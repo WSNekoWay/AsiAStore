@@ -1,0 +1,221 @@
+@import "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css";
+
+#preview{
+    width: 100px;
+    height: auto;
+}
+
+.keteranganWeb img{
+    width: 90px; 
+    height: auto;
+}
+
+.sliderPartnerImg{
+    width: 500px; height: auto;
+}
+
+body{
+    background-color: white;
+    color: black;
+}
+.carousel-control-next-icon, .carousel-control-prev-icon{
+  filter:invert(100%);
+}
+.floating{
+  float: left;
+}
+
+.dark-mode{
+    background-color: rgb(34, 36, 56);
+    color: white;
+    
+}
+.tdtext{
+  color:black!important;
+}
+.dtext{
+  color:black!important;
+}
+.dark-mode .dtext{
+  color:black!important;
+}
+
+
+.dark-mode .tdtext{
+  
+  color: white!important;
+  
+}
+
+
+.borderwhite{
+  border: 1px solid white;
+
+}
+
+
+#ace{
+  margin-left: -13px;
+}
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+   }
+    100% {
+        transform: translateX(calc(-250px * 10));
+   }
+}
+
+.partnerImg{
+    height: 100px;
+    width: auto;
+    margin-left: 75px;
+}
+
+.sliderPartner {
+  padding-top: 10px;
+  padding-bottom: 10px;
+    background: white;
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, .125);
+    
+}
+.sliderPartner::before, .sliderPartner::after {
+    background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+    content: "";
+
+    position: absolute;
+
+    z-index: 2;
+}
+.sliderPartner::after {
+    right: 0;
+    top: 0;
+    transform: rotateZ(180deg);
+}
+.sliderPartner::before {
+    left: 0;
+    top: 0;
+}
+.sliderPartner .slide-track {
+    animation: scroll 40s linear infinite;
+    display: flex;
+    width: calc(250px * 14);
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+
+.slider {
+  margin-top: 5px;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url(images/sun.png);
+  background-size: cover;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 21px;
+  width: 21px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-image: url(images/moon.png);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #000000;
+
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+  background-color: antiquewhite;
+   }
+  
+  #registerForm{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+.ketRegisterText{
+    font-size: 20px;
+    text-align: center;
+  }
+.round:before{
+    background-color: yellow;
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+.container{
+    margin-top:110px !important;
+}
+
+.text1{
+    font-size:13px;
+    color:#cbcbcb;
+    
+}
+.info{
+    padding-left:20%;
+    padding-right:20%;
+    line-height:17px;
+}
+.star{
+    color: #fbc02d;
+}
+
+.cost span{
+    color: #fb3531;
+    font-weight: bold;
+    font-size:20px;
+}
+.buy{
+    background: #dc3545;
+}
+.buy:hover{
+    opacity: .8;
+}
+.cursor{
+    cursor: pointer;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+
+
+
