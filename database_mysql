@@ -1,0 +1,263 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.3
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Mar 18, 2023 at 02:34 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.5
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+--
+-- Database: `asiastore`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contact`
+--
+
+CREATE TABLE `contact` (
+  `contact_id` int(11) NOT NULL,
+  `contact_username` varchar(200) NOT NULL,
+  `contact_type` varchar(40) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `content_text` text NOT NULL,
+  `submit_time` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `history`
+--
+
+CREATE TABLE `history` (
+  `list_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `total_price` int(11) NOT NULL,
+  `history_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `user_name` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `historylist`
+--
+
+CREATE TABLE `historylist` (
+  `historyid` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `product_name` varchar(150) NOT NULL,
+  `product_quantity` int(11) NOT NULL,
+  `product_price` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `total_price` int(11) NOT NULL,
+  `list_id` int(11) NOT NULL,
+  `orderlist_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orderlist`
+--
+
+CREATE TABLE `orderlist` (
+  `orderlist_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `product_name` varchar(100) NOT NULL,
+  `product_quantity` int(11) NOT NULL,
+  `product_price` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `product_max` int(11) NOT NULL,
+  `total_price` int(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `orderlist`
+--
+
+INSERT INTO `orderlist` (`orderlist_id`, `product_id`, `product_name`, `product_quantity`, `product_price`, `user_id`, `product_max`, `total_price`) VALUES
+(127, 41, 'Koepoe Hijau Tua', 1, 8000, 0, 50, 8000),
+(128, 45, 'Gula Rose Brand', 1, 12000, 0, 10, 12000),
+(129, 44, 'Gula Gulaku', 1, 15000, 0, 20, 15000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product`
+--
+
+CREATE TABLE `product` (
+  `product_id` int(11) NOT NULL,
+  `product_name` varchar(200) NOT NULL,
+  `product_picture` varchar(200) NOT NULL,
+  `product_type` varchar(200) NOT NULL,
+  `product_stock` int(200) NOT NULL,
+  `product_description` text NOT NULL,
+  `product_price` int(100) NOT NULL,
+  `product_review` int(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `product`
+--
+
+INSERT INTO `product` (`product_id`, `product_name`, `product_picture`, `product_type`, `product_stock`, `product_description`, `product_price`, `product_review`) VALUES
+(40, 'Koepoe Merah Tua', '6415b7bdd8ddc.jpeg', 'Pewarna Makanan', 100, 'Koepoe pewarna makanan warna merah tua', 7500, 0),
+(41, 'Koepoe Hijau Tua', '6415b7f84648b.jpg', 'Pewarna Makanan', 50, 'Koepoe pewarna makanan hijau tua', 8000, 0),
+(42, 'Koepoe Kuning Tua', '6415b87fe52af.jpg', 'Pewarna Makanan', 25, 'Koepoe pewarna makanan kuning tua', 7000, 0),
+(43, 'Tepung Terigu Pak Tani', '6415b8cb62438.jpg', 'Tepung Terigu', 20, 'Tepung terigu merk pak tani', 15000, 0),
+(44, 'Gula Gulaku', '6415b8edba912.jpg', 'Gula', 20, 'Gula merk gulaku', 15000, 0),
+(45, 'Gula Rose Brand', '6415b96d2d414.jpg', 'Gula', 10, 'Gula merk rose brand', 12000, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `review`
+--
+
+CREATE TABLE `review` (
+  `review_id` int(11) NOT NULL,
+  `guest_name` varchar(200) NOT NULL,
+  `product_id` int(50) NOT NULL,
+  `guest_review` text NOT NULL,
+  `product_rating` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `user_id` int(11) NOT NULL,
+  `user_name` varchar(100) NOT NULL,
+  `user_email` varchar(100) NOT NULL,
+  `user_password` varchar(100) NOT NULL,
+  `user_status` varchar(50) NOT NULL,
+  `user_last_login` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`user_id`, `user_name`, `user_email`, `user_password`, `user_status`, `user_last_login`) VALUES
+(1, 'administrator', 'adminexample@gmail.com', '$2y$10$ecnVBsncFlJDP/CarMtJnOkSUhcXgtM8SetWrB7gAGS7y0YBw52RO', 'admin', '2023-03-18 12:53:59'),
+(2, 'user', 'userexample@gmail.com', '$2y$10$.unSMwHu8XcoSgdOgSUGIO7KN9XUWtwU/cWf13bTSFU4Bpz1lqNLm', 'user', '2022-06-21 12:51:20'),
+(3, 'wansen', 'aaa@gmail.com', '$2y$10$5hQGK28EArhFsBZ8eAWljOodA5nRkiSiDTQxk5.Cumb0rWfSOwlQq', 'user', '2022-06-12 13:23:33'),
+(6, 'Alex', 'Alex@gmail.com', '$2y$10$CEarzmk3NBhlPzU6DiXcZOrku9xv1.wLSGmxtHLDR.wUKL0uw.PzC', 'user', '2022-06-12 05:02:03'),
+(7, 'Akuganteng', 'Akukah@gmail.com', '$2y$10$vjp9pRKJarpL3XTJipF45errVGiCHSlqpxyNpIB44XFBLDrTNe5wm', 'user', '2022-06-06 16:42:05'),
+(13, 'Hahahi', 'haha@gmail.com', '$2y$10$rRv0TVGp89c4aZXci5YNQ.6PKJ1.tUaNC00I16wcB6zo05LJdUbG6', 'user', '2022-06-10 11:12:18'),
+(14, 'Rama', 'rama@gmail.com', '$2y$10$MGJaYASq/EbUE3XNONb4suUlWcGRuVHNzQyFz9NNa1SEnSY1QDvxS', 'user', '2022-06-10 11:12:34'),
+(15, 'kevin', 'kevin@gmail.com', '$2y$10$5/TVl8yMgMEgRXRJ.wnmmeJalnBmbBSSijy6BvENo/Z0ox10214QK', 'user', '2022-06-10 11:12:48'),
+(16, 'Marcel', 'marcel@gmail.com', '$2y$10$hdJO4JbyCfQDQQL9XMVLqeXqkz4xP5LjX9.lUAcAQDewCq/EVy9eS', 'user', '2022-06-10 11:13:08'),
+(17, 'vincent', 'vincent@gmail.com', '$2y$10$dElT1uVSYAMMxDr1X3/MCu2XtcpkL42De/E2ekuhMCx1uAuABHvMS', 'user', '2022-06-10 11:13:45'),
+(18, 'Dhamkar', 'dhamkar@gmail.com', '$2y$10$gd5NyRL/L9.M9YI0DzBZMOzGTc3PNV/rOS7i5.ilyVyfSpiOhUiTO', 'user', '2022-06-10 11:14:00'),
+(19, 'Dhammiko', 'dhammiko@gmail.com', '$2y$10$4w3h/AK4GBA8MSMQMlRL6.Cw6u9VVTNmTnw6n8y/anYvcGtHhZBzS', 'user', '2022-06-10 11:14:17'),
+(20, 'nicho', 'nicho@gmail.com', '$2y$10$V0jJqwr0Fuz2eziQ67p5kekPhE9CyTnJj6tRf6No0Rj5l0bm61AG2', 'user', '2022-06-10 11:16:41'),
+(21, 'dylan', 'dylan@gmail.com', '$2y$10$QFd1gTH08VdmI.ZUKWpTougsv/.K8MDYq/CV/QCoyDy5qTIxlHxu6', 'user', '2022-06-10 11:17:29'),
+(22, 'kenneth', 'Kenneth@gmail.com', '$2y$10$r/IQ7dJf.vRcTeES3gV.h.46gxwFbb7Hwm65uBqPnOU0cphjx2mDy', 'user', '2022-06-10 11:18:09'),
+(23, 'Hans', 'hans@gmail.com', '$2y$10$zcKl6.U2CZb99Zz9NFukXes6ddwBSXPuwsXonaL/rQCvASZ4rTUqm', 'user', '2022-06-10 11:18:25'),
+(25, 'AdminWanSen', 'bryan.wansen@gmail.com', '$2y$10$dWuVDQmbRjZMrzEIXDF06uXI8tCo/s1xg5CPsTrgp20NM/VW.Znu6', 'admin', '2022-06-10 14:19:20');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `contact`
+--
+ALTER TABLE `contact`
+  ADD PRIMARY KEY (`contact_id`);
+
+--
+-- Indexes for table `history`
+--
+ALTER TABLE `history`
+  ADD PRIMARY KEY (`list_id`);
+
+--
+-- Indexes for table `historylist`
+--
+ALTER TABLE `historylist`
+  ADD PRIMARY KEY (`historyid`);
+
+--
+-- Indexes for table `orderlist`
+--
+ALTER TABLE `orderlist`
+  ADD PRIMARY KEY (`orderlist_id`);
+
+--
+-- Indexes for table `product`
+--
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`product_id`);
+
+--
+-- Indexes for table `review`
+--
+ALTER TABLE `review`
+  ADD PRIMARY KEY (`review_id`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`user_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `contact`
+--
+ALTER TABLE `contact`
+  MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `history`
+--
+ALTER TABLE `history`
+  MODIFY `list_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `historylist`
+--
+ALTER TABLE `historylist`
+  MODIFY `historyid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `orderlist`
+--
+ALTER TABLE `orderlist`
+  MODIFY `orderlist_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
+
+--
+-- AUTO_INCREMENT for table `product`
+--
+ALTER TABLE `product`
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+
+--
+-- AUTO_INCREMENT for table `review`
+--
+ALTER TABLE `review`
+  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+COMMIT;
